@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\CategoryProduct;
-use App\Models\Product;
+use App\Models\Ticket;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class MarketController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Store::with('products')->find($request->user()->store);
+        $products = Store::with('tickets')->find($request->user()->store);
         if ($products) {
             foreach ($products as $item) {
                 if ($item->verification_store == 0) {
@@ -124,8 +124,8 @@ class MarketController extends Controller
      */
     public function edit($id)
     {
-        $product = auth()->user()->store->products();
-        $product = Product::find($id);
+        $product = auth()->user()->store->tickets();
+        $product = Ticket::find($id);
         $categories = CategoryProduct::all();
         return view(
             'market.edit',
@@ -157,7 +157,7 @@ class MarketController extends Controller
 
         $product = auth()->user()->store;
         if ($product) {
-            $product = Product::findOrFail($id);
+            $product = Ticket::findOrFail($id);
             $data = $request->all();
             $product->update($data);
             return redirect()->route('market.index');
@@ -170,9 +170,9 @@ class MarketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product, $id)
+    public function destroy(Ticket $product, $id)
     {
-        $product = Product::find($id);
+        $product = Ticket::find($id);
         $product->delete();
 
         return redirect()->route('market.index');

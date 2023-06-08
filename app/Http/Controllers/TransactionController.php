@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CategoryProduct;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\Product;
+use App\Models\Ticket;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class TransactionController extends Controller
     {
         $order = Order::all();
         $totalQuantity = OrderItem::sum('quantity');
-        $totalProduct = Product::count('name');
+        $totalProduct = Ticket::count('name');
         $totalMarket = Store::count('id');
         $totalUser = User::count('id');
         $totalPrice = OrderItem::sum('price');
@@ -52,7 +52,7 @@ class TransactionController extends Controller
     {
         $order = Order::all();
         $totalQuantity = OrderItem::sum('quantity');
-        $totalProduct = Product::count('name');
+        $totalProduct = Ticket::count('name');
         $totalMarket = Store::count('id');
         $totalUser = User::count('id');
         $totalPrice = OrderItem::sum('price');

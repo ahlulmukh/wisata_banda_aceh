@@ -20,13 +20,13 @@ class Order extends Model
         'store_id',
         'status',
         'total_price',
-        'product_id',
+        'ticket_id',
         'created_at'
     ];
 
     public function items()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Ticket::class);
     }
 
     public function orderItem()

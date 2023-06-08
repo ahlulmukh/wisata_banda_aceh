@@ -39,16 +39,7 @@
                     </div>
                 @endif
                 @if (Auth::user()->roles == 'USER')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="/dashboard/market" :active="request()->routeIs('dashboard/market')">
-                            {{ __('List Tiket') }}
-                        </x-jet-nav-link>
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="/dashboard/market" :active="request()->routeIs('dashboard/market')">
-                            {{ __('Pesan Tiket') }}
-                        </x-jet-nav-link>
-                    </div>
+
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="/dashboard/market" :active="request()->routeIs('dashboard/market')">
                             {{ __('Daftar Transksasi') }}
