@@ -23,16 +23,13 @@ class Product extends Model
         'description'
     ];
 
-    public function category(){
-        return $this->belongsTo(CategoryProduct::class,'categories_id','id');
+    public function category()
+    {
+        return $this->belongsTo(CategoryProduct::class, 'categories_id', 'id');
     }
 
-    public function store(){
-        return $this->belongsTo(Store::class,'store_id','id');
+    public function cart()
+    {
+        return $this->hasOne(Cart::class, 'product_id', 'id');
     }
-
-    public function cart(){
-        return $this->hasOne(Cart::class,'product_id','id');
-    }
-
 }

@@ -16,13 +16,11 @@ return new class extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categories_id')->nullable()->constrained("category_product")->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('store_id')->references('id')->on('store')->onDelete('cascade');
             $table->string('name');
-            $table->double('weight');
-            $table->mediumInteger('stock');
+            $table->string('lokasi');
+            $table->text('description');
             $table->integer('price');
             $table->string('image');
-            $table->text('description');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -28,13 +28,8 @@
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="/dashboard/stores" :active="request()->routeIs('dashboard/stores')">
-                            {{ __('Toko') }}
-                        </x-jet-nav-link>
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="/dashboard/products" :active="request()->routeIs('dashboard/products')">
-                            {{ __('Produk') }}
+                        <x-jet-nav-link href="/dashboard/tickets" :active="request()->routeIs('dashboard/tickets')">
+                            {{ __('Tambah Tiket') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -46,7 +41,17 @@
                 @if (Auth::user()->roles == 'USER')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="/dashboard/market" :active="request()->routeIs('dashboard/market')">
-                            {{ __('Produk') }}
+                            {{ __('List Tiket') }}
+                        </x-jet-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="/dashboard/market" :active="request()->routeIs('dashboard/market')">
+                            {{ __('Pesan Tiket') }}
+                        </x-jet-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="/dashboard/market" :active="request()->routeIs('dashboard/market')">
+                            {{ __('Daftar Transksasi') }}
                         </x-jet-nav-link>
                     </div>
                 @endif

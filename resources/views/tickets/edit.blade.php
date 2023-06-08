@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 @endif
-                <form style="width: 70%" action="{{ route('market.update', $item->id) }}" method="post"
+                <form style="width: 70%" action="{{ route('create.update', $item->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

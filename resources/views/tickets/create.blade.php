@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 @endif
-                <form style="width: 70%" action="{{ route('market.store') }}" method="post" enctype="multipart/form-data">
+                <form style="width: 70%" action="{{ route('tickets.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">

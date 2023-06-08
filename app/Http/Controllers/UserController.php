@@ -46,7 +46,7 @@ class UserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', new Password],
-            'roles' => ['required','in:ADMIN,USER'],
+            'roles' => ['required', 'in:ADMIN,USER'],
             'profile_photo_path' => ['required']
         ]);
 
@@ -56,7 +56,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'roles' => $request->roles,
-            'profile_photo_path' => $request->file('profile_photo_path')->store('assets/user','public'),
+            'profile_photo_path' => $request->file('profile_photo_path')->store('assets/user', 'public'),
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -130,7 +130,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-
         return redirect()->route('users.index');
     }
 }

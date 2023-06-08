@@ -34,6 +34,6 @@ Route::prefix('dashboard')
         Route::resource('category', CategoryController::class);
         Route::resource('stores', StoreController::class);
         Route::resource('market', MarketController::class);
-        Route::resource('products', ProductController::class);
+        Route::resource('tickets', ProductController::class);
         Route::resource('order', TransactionController::class);
     });

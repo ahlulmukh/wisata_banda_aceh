@@ -1,17 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Produk') }}
+            {{ __('Wisata') }}
         </h2>
     </x-slot>
 
     <div class="py-2" style="background-color: white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <div class="mb-10">
-                <a href="{{ route('.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded">
-                    + Buat Produk
+            <div class="mb-10">
+                <a href="{{ route('tickets.create') }}"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded">
+                    + Tambah Wisata
                 </a>
-            </div> --}}
+            </div>
+
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto">
                     <div class="py-2 align-middle inline-block min-w-full">
@@ -21,19 +23,21 @@
                                     <tr class="text-gray-500">
                                         <th scope="col" class="px-6 py-3 text-left font-bold">No</th>
                                         <th scope="col" class="px-6 py-3 text-center font-bold">Gambar</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold">Nama Produk</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold">Berat (KG)</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold">Stok</th>
+                                        <th scope="col" class="px-6 py-3 text-left font-bold">Nama</th>
+                                        <th scope="col" class="px-6 py-3 text-left font-bold">Lokasi</th>
+                                        <th scope="col" class="px-6 py-3 text-left font-bold">Description</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Harga</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold">Deskripsi</th>
-
+                                        <th scope="col" class="px-6 py-3 text-left font-bold">Waduh</th>
+                                        <th scope="col" class="relative px-6 py-3">
+                                            <span class="sr-only">Edit</span>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @php
                                         $num = 1;
                                     @endphp
-                                    @forelse ($products as $item)
+                                    @forelse ($tickets as $item)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left">
                                                 {{ $num++ }}</td>
@@ -56,6 +60,23 @@
                                                 {{ $item->price }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {{ $item->description }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <div class="flex justify-center gap-1 font-bold text-center">
+                                                        <a style="background-color: #efa961"
+                                                            href="{{ route('tickets.edit', $item->id) }}"
+                                                            class="text-white px-2 py-2 rounded w-20">Edit</a>
+    
+                                                        <form action="{{ route('tickets.destroy', $item->id) }}"
+                                                            method="POST" class="inline-block">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button style="background-color: #ff928a;color: darkred"
+                                                                type="submit" class="font-bold px-2 py-2 rounded w-20">
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
 
                                         </tr>
 

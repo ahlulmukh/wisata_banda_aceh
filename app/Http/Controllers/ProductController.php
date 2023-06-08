@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\CategoryProduct;
 
 class ProductController extends Controller
 {
@@ -14,9 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('products.index', [
-            'products' => $products,
+        $tickets = Product::all();
+        return view('tickets.index', [
+            'tickets' => $tickets,
         ]);
     }
 
@@ -27,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = CategoryProduct::all();
+        return view('tickets.create', compact('categories'));
     }
 
     /**
@@ -38,7 +40,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'categories_id' => 'required|exists:category_product,id',
+            'name' => 'required|string|max:255',
+            'weight' => 'required|string|max:255',
+            'stock' => 'required|string',
+            'price' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
+            'description' => 'required|string'
+        ]);
+
+        Product::create([
+            'categories_id' => $request->categories_id,
+            'name' => $request->name,
+            'weight' => $request->weight,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'image' => $request->hasFile('image') ?  $request->file('image')->store('public') : null,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('tickets.index');
     }
 
     /**
@@ -60,7 +82,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = CategoryProduct::all();
+        return view(
+            'tickets.edit',
+            compact('categories'),
+            [
+                'item' => $product,
+            ]
+        );
     }
 
     /**
@@ -72,7 +102,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'categories_id' => 'required|exists:category_product,id',
+            'name' => 'required|string|max:255',
+            'weight' => 'required|string|max:255',
+            'stock' => 'required|string',
+            'price' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
+            'description' => 'required|string'
+        ]);
+
+        $product = Product::findOrFail($id);
+        $data = $request->all();
+        $product->update($data);
+        return redirect()->route('tickets.index');
     }
 
     /**
@@ -83,6 +126,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()->route('tickets.index');
     }
 }
