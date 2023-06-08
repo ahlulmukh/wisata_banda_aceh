@@ -27,7 +27,6 @@
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Lokasi</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Description</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Harga</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold">Waduh</th>
                                         <th scope="col" class="relative px-6 py-3">
                                             <span class="sr-only">Edit</span>
                                         </th>
@@ -51,10 +50,7 @@
                                                 {{ $item->name }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {{ $item->weight }} Kg
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-500">{{ $item->stock }}</div>
+                                                {{ $item->lokasi }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {{ $item->price }}</td>

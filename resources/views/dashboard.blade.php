@@ -4,7 +4,7 @@
             @if (Auth::user()->roles == 'ADMIN')
                 {{ __('Dashboard Wisata') }}
             @else
-                {{ __('Dashboard Penjual Markettani') }}
+                {{ __('Dashboard User') }}
             @endif
         </h2>
     </x-slot>
