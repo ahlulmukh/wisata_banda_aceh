@@ -28,6 +28,7 @@ class User extends Authenticatable
         'email',
         'password',
         'roles',
+        'saldo',
         'username',
         'profile_photo_path'
     ];
@@ -62,16 +63,18 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function transactions(){
-        return $this->hasMany(Transaction::class,'users_id','id');
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
     }
 
-    public function store(){
+    public function store()
+    {
         return $this->hasOne(Store::class, 'users_id', 'id');
     }
 
-    public function cart(){
-        return $this->hasMany(Cart::class, 'users_id','id');
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'users_id', 'id');
     }
-
 }

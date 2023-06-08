@@ -23,11 +23,13 @@ class Store extends Model
         'image',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
-    public function products(){
-        return $this->hasMany(Product::class,'store_id','id');
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'store_id', 'id');
     }
 }

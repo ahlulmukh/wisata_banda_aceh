@@ -20,7 +20,7 @@ return new class extends Migration
             // $table->string('username');
             // $table->string('roles')->default('USER');
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('saldo');
+            $table->integer('saldo')->default('0');
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

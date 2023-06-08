@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CategoryTicket;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ticket extends Model
 {
@@ -23,7 +24,7 @@ class Ticket extends Model
 
     public function category()
     {
-        return $this->belongsTo(Categoryticket::class, 'categories_id', 'id');
+        return $this->belongsTo(CategoryTicket::class, 'categories_id', 'id');
     }
 
     public function cart()

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
-use App\Models\CategoryProduct;
+use App\Models\CategoryTicket;
 
 class TicketController extends Controller
 {
@@ -28,7 +28,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        $categories = CategoryProduct::all();
+        $categories = CategoryTicket::all();
         return view('tickets.create', compact('categories'));
     }
 
@@ -81,7 +81,7 @@ class TicketController extends Controller
     public function edit($id)
     {
         $product = Ticket::find($id);
-        $categories = CategoryProduct::all();
+        $categories = CategoryTicket::all();
         return view(
             'tickets.edit',
             compact('categories'),

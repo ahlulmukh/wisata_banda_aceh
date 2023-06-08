@@ -31,7 +31,7 @@ class MarketApiController extends Controller
 
     public function fetch($id)
     {
-        $market = Store::with('products')->find($id);
+        $market = Store::with('tickets')->find($id);
         if ($market->image != null) {
             $market->image = url(Storage::url($market->image));
         } else {

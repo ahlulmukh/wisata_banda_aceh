@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use App\Models\CategoryProduct;
+use App\Models\CategoryTicket;
 use App\Models\Ticket;
 use App\Models\Store;
 use App\Models\User;
@@ -68,7 +68,7 @@ class MarketController extends Controller
      */
     public function create()
     {
-        $categories = CategoryProduct::all();
+        $categories = CategoryTicket::all();
         return view('market.create', compact('categories'));
     }
 
@@ -126,7 +126,7 @@ class MarketController extends Controller
     {
         $product = auth()->user()->store->tickets();
         $product = Ticket::find($id);
-        $categories = CategoryProduct::all();
+        $categories = CategoryTicket::all();
         return view(
             'market.edit',
             compact('categories'),

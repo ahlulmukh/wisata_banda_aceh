@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryProduct;
+use App\Models\CategoryTicket;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Ticket;
@@ -25,7 +25,7 @@ class TransactionController extends Controller
         $totalMarket = Store::count('id');
         $totalUser = User::count('id');
         $totalPrice = OrderItem::sum('price');
-        $totalCategory = CategoryProduct::count('id');
+        $totalCategory = CategoryTicket::count('id');
 
         return view('order.index', [
             'order' => $order,
@@ -56,7 +56,7 @@ class TransactionController extends Controller
         $totalMarket = Store::count('id');
         $totalUser = User::count('id');
         $totalPrice = OrderItem::sum('price');
-        $totalCategory = CategoryProduct::count('id');
+        $totalCategory = CategoryTicket::count('id');
 
         return view('order.create', [
             'order' => $order,

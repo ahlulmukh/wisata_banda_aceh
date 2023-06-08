@@ -38,7 +38,7 @@ Route::post('updateMarket/{id}', [MarketApiController::class, 'updateMarket']);
 Route::get('limitsMarket', [MarketApiController::class, 'limitsMarket']);
 
 // PRODUCT
-Route::get('products', [ProductApiController::class, 'products']);
+Route::get('tickets', [ProductApiController::class, 'tickets']);
 Route::get('limits', [ProductApiController::class, 'limits']);
 Route::get('product/{id}', [ProductApiController::class, 'product']);
 Route::get('search/{name}', [ProductApiController::class, 'search']);

@@ -4,20 +4,20 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Storage;
 
 class ProductApiController extends Controller
 {
-    public function products()
+    public function tickets()
     {
-        $products = Product::with('store', 'category')->get();
+        $tickets = Ticket::with('category')->get();
         try {
-            if ($products) {
-                foreach ($products as $item) {
+            if ($tickets) {
+                foreach ($tickets as $item) {
                     $item->image = url(Storage::url($item->image));
                 }
-                return ResponseFormatter::success($products, 'Data semua produk berhasil diambil');
+                return ResponseFormatter::success($tickets, 'Data semua produk berhasil diambil');
             } else {
                 return ResponseFormatter::error('null', 'Tidak ada produk', 404);
             }
@@ -28,7 +28,7 @@ class ProductApiController extends Controller
 
     public function product($id)
     {
-        $product = Product::with('store', 'category')->find($id);
+        $product = Ticket::with('store', 'category')->find($id);
         if ($product) {
             $product->image = url(Storage::url($product->image));
             return ResponseFormatter::success($product, 'Data produk berhasil diambil');
@@ -41,7 +41,7 @@ class ProductApiController extends Controller
 
     public function search($name)
     {
-        $result = Product::where('name', 'LIKE', '%' . $name . '%')->get();
+        $result = Ticket::where('name', 'LIKE', '%' . $name . '%')->get();
         if (count($result)) {
             foreach ($result as $item) {
                 $item->image = url(Storage::url($item->image));
@@ -54,14 +54,14 @@ class ProductApiController extends Controller
 
     public function limits()
     {
-        $products = Product::take(6)->with('store', 'category')->get();
+        $tickets = Ticket::take(6)->with('store', 'category')->get();
         try {
-            if ($products) {
-                foreach ($products as $item) {
+            if ($tickets) {
+                foreach ($tickets as $item) {
                     $item->image = url(Storage::url($item->image));
                 }
                 return ResponseFormatter::success(
-                    $products,
+                    $tickets,
                     'Data list produk berhasil diambil'
                 );
             }

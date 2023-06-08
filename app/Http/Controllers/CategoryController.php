@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
-use App\Models\CategoryProduct;
+use App\Models\CategoryTicket;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = CategoryProduct::all();
+        $category = CategoryTicket::all();
         return view('category.index', [
             'category' => $category
         ]);
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $data = $request->all();
 
-        CategoryProduct::create($data);
+        CategoryTicket::create($data);
         return redirect()->route('category.index');
     }
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoryProduct $category)
+    public function edit(CategoryTicket $category)
     {
         return view('category.edit', [
             'item' => $category,
@@ -76,7 +76,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategoryProduct $category)
+    public function update(Request $request, CategoryTicket $category)
     {
         $data = $request->all();
 
@@ -90,7 +90,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryProduct $category)
+    public function destroy(CategoryTicket $category)
     {
         $category->delete();
         return redirect()->route('category.index');

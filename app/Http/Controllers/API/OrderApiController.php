@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class OrderApiController extends Controller
         $pesanan = Order::with('orderItem.product', 'market')
             ->where('users_id', $id)->get();
         foreach ($pesanan as $item) {
-            $item->image = url(Storage::url($item->image));
+            $item->store->image = url(Storage::url($item->image));
         }
 
         if (count($pesanan) <= 0)  return response()->json([
@@ -88,7 +89,7 @@ class OrderApiController extends Controller
         ]);
 
         foreach ($request->items as $product) {
-            $item = Product::findOrFail($product['id']);
+            $item = Ticket::findOrFail($product['id']);
             if ($item) {
                 OrderItem::create([
                     'quantity' => $product['quantity'],
