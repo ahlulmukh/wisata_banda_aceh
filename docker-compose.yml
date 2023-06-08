@@ -3,7 +3,7 @@ services:
   app:
     build:
       args:
-        user: angga
+        user: $DOCKER_USER
         uid: 1000
       context: ./
       dockerfile: Dockerfile
@@ -55,6 +55,7 @@ services:
       - 8080:80
     volumes:
       - ./:/var/www
+      - ./:/var/storage
       - ./docker/nginx:/etc/nginx/conf.d/
     depends_on:
       - app

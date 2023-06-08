@@ -94,8 +94,8 @@ class UserApiController extends Controller
     {
         $user = User::with('store')->find($request->user());
         foreach ($user as $item) {
-            if ($item->profile_photo_path != null) {
-                $item->profile_photo_path = url(Storage::url($item->profile_photo_path));
+            if ($item->store->profile_photo_path != null) {
+                $item->store->profile_photo_path = url(Storage::url($item->store->profile_photo_path));
             } else {
                 url($item->profile_photo_path);
             }
