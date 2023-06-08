@@ -13,9 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('order', function (Blueprint $table) {
-            $table->float('total_price')->default(0)->after('status');
-        });
     }
 
     /**

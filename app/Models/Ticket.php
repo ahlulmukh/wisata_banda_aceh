@@ -7,29 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
-class Product extends Model
+class Ticket extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'product';
+    protected $table = 'ticket';
 
     protected $fillable = [
-        'store_id',
         'categories_id',
         'name',
-        'weight',
-        'stock',
+        'lokasi',
+        'description',
         'price',
         'image',
-        'description'
     ];
 
     public function category()
     {
-        return $this->belongsTo(CategoryProduct::class, 'categories_id', 'id');
+        return $this->belongsTo(Categoryticket::class, 'categories_id', 'id');
     }
 
     public function cart()
     {
-        return $this->hasOne(Cart::class, 'product_id', 'id');
+        return $this->hasOne(Cart::class, 'ticket_id', 'id');
     }
 }

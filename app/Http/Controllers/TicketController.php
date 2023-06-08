@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Models\CategoryProduct;
 
-class ProductController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $tickets = Product::all();
+        $tickets = Ticket::all();
         return view('tickets.index', [
             'tickets' => $tickets,
         ]);
@@ -43,21 +43,19 @@ class ProductController extends Controller
         $this->validate($request, [
             'categories_id' => 'required|exists:category_product,id',
             'name' => 'required|string|max:255',
-            'weight' => 'required|string|max:255',
-            'stock' => 'required|string',
+            'lokasi' => 'required|string|max:255',
+            'description' => 'required|string',
             'price' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
-            'description' => 'required|string'
         ]);
 
-        Product::create([
+        Ticket::create([
             'categories_id' => $request->categories_id,
             'name' => $request->name,
-            'weight' => $request->weight,
-            'stock' => $request->stock,
+            'lokasi' => $request->lokasi,
+            'description' => $request->description,
             'price' => $request->price,
             'image' => $request->hasFile('image') ?  $request->file('image')->store('public') : null,
-            'description' => $request->description
         ]);
 
         return redirect()->route('tickets.index');
@@ -82,7 +80,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Ticket::find($id);
         $categories = CategoryProduct::all();
         return view(
             'tickets.edit',
@@ -105,14 +103,13 @@ class ProductController extends Controller
         $data = $request->validate([
             'categories_id' => 'required|exists:category_product,id',
             'name' => 'required|string|max:255',
-            'weight' => 'required|string|max:255',
-            'stock' => 'required|string',
+            'lokasi' => 'required|string|max:255',
+            'description' => 'required|string',
             'price' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
-            'description' => 'required|string'
         ]);
 
-        $product = Product::findOrFail($id);
+        $product = Ticket::findOrFail($id);
         $data = $request->all();
         $product->update($data);
         return redirect()->route('tickets.index');
@@ -126,7 +123,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
+        $product = Ticket::find($id);
         $product->delete();
 
         return redirect()->route('tickets.index');

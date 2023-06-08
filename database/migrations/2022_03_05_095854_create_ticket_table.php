@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('ticket', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categories_id')->nullable()->constrained("category_product")->cascadeOnUpdate()->nullOnDelete();
             $table->string('name');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('ticket');
     }
 };

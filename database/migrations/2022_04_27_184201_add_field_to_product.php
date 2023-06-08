@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('product', function (Blueprint $table) {
+        Schema::table('ticket', function (Blueprint $table) {
             $table->string('image')->nullable()->change();
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('product', function (Blueprint $table) {
+        Schema::table('ticket', function (Blueprint $table) {
             $table->dropColumn('image');
         });
     }

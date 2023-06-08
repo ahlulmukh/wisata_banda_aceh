@@ -3,7 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\MarketController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
@@ -34,6 +34,6 @@ Route::prefix('dashboard')
         Route::resource('category', CategoryController::class);
         Route::resource('stores', StoreController::class);
         Route::resource('market', MarketController::class);
-        Route::resource('tickets', ProductController::class);
+        Route::resource('tickets', TicketController::class);
         Route::resource('order', TransactionController::class);
     });

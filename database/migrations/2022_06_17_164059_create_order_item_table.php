@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('price');
             $table->double('weight');
             $table->integer('quantity');
-            $table->foreignId('product_id')->references('id')->on('product')->onDelete('cascade');
+            $table->foreignId('ticket_id')->references('id')->on('ticket')->onDelete('cascade');
             $table->foreignId('order_id')->references('id')->on('order')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
