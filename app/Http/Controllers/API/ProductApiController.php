@@ -26,13 +26,13 @@ class ProductApiController extends Controller
         }
     }
 
-    public function product($id)
+    public function ticket($id)
     {
-        $product = Ticket::with('store', 'category')->find($id);
-        if ($product) {
-            $product->image = url(Storage::url($product->image));
-            return ResponseFormatter::success($product, 'Data produk berhasil diambil');
-        } else if (empty($product)) {
+        $tickets = Ticket::with('category')->find($id);
+        if ($tickets) {
+            $tickets->image = url(Storage::url($tickets->image));
+            return ResponseFormatter::success($tickets, 'Data produk berhasil diambil');
+        } else if (empty($tickets)) {
             return ResponseFormatter::error([
                 'message' => 'Produk tidak ditemukan',
             ], 'Not Found');
@@ -54,7 +54,7 @@ class ProductApiController extends Controller
 
     public function limits()
     {
-        $tickets = Ticket::take(6)->with('store', 'category')->get();
+        $tickets = Ticket::take(6)->with('category')->get();
         try {
             if ($tickets) {
                 foreach ($tickets as $item) {

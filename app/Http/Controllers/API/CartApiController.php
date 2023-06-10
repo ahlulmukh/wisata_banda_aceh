@@ -14,7 +14,7 @@ class CartApiController extends Controller
 {
     public function myCart(Request $request)
     {
-        $carts = Cart::with('product.store', 'user')->where('users_id', $request->user()->id)->get();
+        $carts = Cart::with('ticket', 'user')->where('users_id', $request->user()->id)->get();
         if (count($carts) <= 0)  return response()->json([
             'message' =>  'Belum ada pesanan'
         ]);
@@ -23,7 +23,7 @@ class CartApiController extends Controller
 
     public function cart($id)
     {
-        $cart = Cart::with('product')->where('product_id', $id)->first();
+        $cart = Cart::with('ticket')->where('ticket_id', $id)->first();
         if (empty($cart)) {
             return ResponseFormatter::success($cart, 'Item tidak ditemukan');
         }
@@ -35,13 +35,13 @@ class CartApiController extends Controller
         try {
             $request->validate([
                 'users_id' => 'required',
-                'product_id' => 'required',
+                'ticket_id' => 'required',
                 'quantity' => 'required',
             ]);
 
             $cart = Cart::create([
                 'users_id' => $request->users_id,
-                'product_id' => $request->product_id,
+                'ticket_id' => $request->ticket_id,
                 'quantity' => $request->quantity,
             ]);
             return ResponseFormatter::success($cart, 'Item keranjang berhasil di tambahkan');

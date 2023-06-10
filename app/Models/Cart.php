@@ -13,7 +13,7 @@ class Cart extends Model
 
     protected $fillable = [
         'users_id',
-        'product_id',
+        'ticket_id',
         'quantity',
     ];
 
@@ -22,8 +22,8 @@ class Cart extends Model
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
-    public function product()
+    public function ticket()
     {
-        return $this->belongsTo(Ticket::class, 'product_id', 'id');
+        return $this->belongsTo(Ticket::class, 'ticket_id', 'id');
     }
 }

@@ -14,11 +14,11 @@ class OrderItem extends Model
         'price',
         'weight',
         'quantity',
-        'product_id',
+        'ticket_id',
         'order_id',
     ];
 
-    public function product()
+    public function ticket()
     {
         return $this->belongsTo(Ticket::class);
     }

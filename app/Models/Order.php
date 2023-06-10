@@ -17,7 +17,6 @@ class Order extends Model
         'phone',
         'image',
         'users_id',
-        'store_id',
         'status',
         'total_price',
         'ticket_id',

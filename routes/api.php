@@ -40,7 +40,7 @@ Route::get('limitsMarket', [MarketApiController::class, 'limitsMarket']);
 // PRODUCT
 Route::get('tickets', [ProductApiController::class, 'tickets']);
 Route::get('limits', [ProductApiController::class, 'limits']);
-Route::get('product/{id}', [ProductApiController::class, 'product']);
+Route::get('ticket/{id}', [ProductApiController::class, 'ticket']);
 Route::get('search/{name}', [ProductApiController::class, 'search']);
 
 // CATEGORY

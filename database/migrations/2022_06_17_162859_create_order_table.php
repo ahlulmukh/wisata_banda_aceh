@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('image');
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('store_id')->references('id')->on('store')->onDelete('cascade');
             $table->string('status');
             $table->softDeletes();
             $table->timestamps();

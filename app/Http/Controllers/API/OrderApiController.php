@@ -29,10 +29,10 @@ class OrderApiController extends Controller
 
     public function orderUser($id)
     {
-        $pesanan = Order::with('orderItem.product', 'market')
+        $pesanan = Order::with('orderItem.ticket')
             ->where('users_id', $id)->get();
         foreach ($pesanan as $item) {
-            $item->store->image = url(Storage::url($item->image));
+            $item->image = url(Storage::url($item->image));
         }
 
         if (count($pesanan) <= 0)  return response()->json([
@@ -72,7 +72,6 @@ class OrderApiController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg',
-            'store_id' => 'required:exists:store,id',
             'status' => 'required',
             'total_price' => 'required'
         ]);
@@ -84,18 +83,17 @@ class OrderApiController extends Controller
             'image' =>  $request->hasFile('image') ?  $request->file('image')->store('assets/order', 'public') : null,
             'status' => $request->status,
             'total_price' => $request->total_price,
-            'store_id' => $request->store_id,
-            'product_id' => 72
+            'ticket_id' => 1
         ]);
 
-        foreach ($request->items as $product) {
-            $item = Ticket::findOrFail($product['id']);
+        foreach ($request->items as $ticket) {
+            $item = Ticket::findOrFail($ticket['id']);
             if ($item) {
                 OrderItem::create([
-                    'quantity' => $product['quantity'],
+                    'quantity' => $ticket['quantity'],
                     'price' => $item->price,
                     'weight' => 0.0,
-                    'product_id' => $item->id,
+                    'ticket_id' => $item->id,
                     'order_id' => $order->id,
                 ]);
             }
