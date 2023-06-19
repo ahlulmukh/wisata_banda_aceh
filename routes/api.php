@@ -55,6 +55,7 @@ Route::get('orderMarket/{id}', [OrderApiController::class, 'orderMarket']);
 Route::get('orderUser/{id}', [OrderApiController::class, 'orderUser']);
 Route::get('allOrder', [OrderApiController::class, 'allOrder']);
 Route::put('statusOrder/{id}', [OrderApiController::class, 'statusOrder']);
+Route::post('verify-payment', [OrderApiController::class, 'verifyPayment']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [UserApiController::class, 'fetch']);

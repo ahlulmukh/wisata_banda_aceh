@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('address');
             $table->string('phone');
             $table->string('image');
+            $table->string('qrcode_url')->nullable();
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status');
             $table->softDeletes();
