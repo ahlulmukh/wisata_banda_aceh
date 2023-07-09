@@ -36,6 +36,7 @@ class OrderApiController extends Controller
             ->where('users_id', $id)->get();
         foreach ($pesanan as $item) {
             $item->image = url(Storage::url($item->image));
+            $item->qrcode_url = $item->qrcode_url ? url(Storage::url($item->qrcode_url)) : null;
         }
 
         if (count($pesanan) <= 0)  return response()->json([
@@ -134,6 +135,9 @@ class OrderApiController extends Controller
         $qrcodePath = 'assets/qrcodes/' . time() . '.png'; // Menentukan path penyimpanan QR code
         Storage::disk('public')->put($qrcodePath, $qrcode); // Menyimpan QR code ke storage
 
-        return Storage::url($qrcodePath); // Mengembalikan URL QR code yang dapat diakses secara publik
+        $url = Storage::url($qrcodePath);
+        $url = str_replace('storage/', '', $url); // Menghilangkan "storage/" dari URL path
+
+        return $url; // Mengembalikan URL QR code yang dapat diakses secara publik tanpa "storage/"
     }
 }
