@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->longText('address');
-            $table->string('phone');
-            $table->string('image');
+            $table->string('nama');
             $table->string('qrcode_url')->nullable();
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status');

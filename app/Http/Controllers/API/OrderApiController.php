@@ -73,9 +73,7 @@ class OrderApiController extends Controller
     {
         $request->validate([
             'items' => 'required|array',
-            'address' => 'required',
-            'phone' => 'required',
-            'image' => 'required|mimes:png,jpg,jpeg',
+            'nama' => 'required',
             'status' => 'required',
             'total_price' => 'required'
         ]);
@@ -83,9 +81,7 @@ class OrderApiController extends Controller
         // Simpan order
         $order = Order::create([
             'users_id' => Auth::user()->id,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'image' => $request->hasFile('image') ? $request->file('image')->store('assets/order', 'public') : null,
+            'nama' => $request->nama,
             'status' => $request->status,
             'total_price' => $request->total_price,
             'ticket_id' => 1
@@ -115,7 +111,7 @@ class OrderApiController extends Controller
         $order = Order::findOrFail($decodedData['order_id']);
 
         // Cek apakah pesanan sudah dibayar sebelumnya
-        if ($order->status === 'PAID') {
+        if ($order->status === 'SUCCESS') {
             return response()->json(['error' => 'Pesanan ini sudah dibayar sebelumnya.'], 400);
         }
 
@@ -123,7 +119,18 @@ class OrderApiController extends Controller
             return response()->json(['error' => 'Verifikasi pembayaran gagal. Data tidak valid.'], 400);
         }
 
-        $order->fill(['status' => 'PAID'])->save();
+        // Mengurangi saldo pengguna
+        $user = User::findOrFail($decodedData['user_id']);
+        $newSaldo = $user->saldo - $order->total_price;
+
+        if ($newSaldo < 0) {
+            return response()->json(['error' => 'Saldo pengguna tidak mencukupi.'], 400);
+        }
+
+        $user->saldo = $newSaldo;
+        $user->save();
+
+        $order->fill(['status' => 'SUCCESS'])->save();
 
         return response()->json(['message' => 'Pembayaran berhasil diverifikasi', 'order' => $order], 200);
     }
