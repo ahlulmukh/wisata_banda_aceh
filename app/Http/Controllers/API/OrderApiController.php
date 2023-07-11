@@ -35,7 +35,6 @@ class OrderApiController extends Controller
         $pesanan = Order::with('orderItem.ticket')
             ->where('users_id', $id)->get();
         foreach ($pesanan as $item) {
-            $item->image = url(Storage::url($item->image));
             $item->qrcode_url = $item->qrcode_url ? url(Storage::url($item->qrcode_url)) : null;
         }
 

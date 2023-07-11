@@ -13,9 +13,7 @@ class Order extends Model
     protected $table = 'order';
 
     protected $fillable = [
-        'address',
-        'phone',
-        'image',
+        'nama',
         'users_id',
         'status',
         'total_price',
