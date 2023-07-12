@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\API\CartApiController;
-use App\Http\Controllers\API\CategoryApiController;
-use App\Http\Controllers\API\DataApiController;
-use App\Http\Controllers\API\MarketApiController;
-use App\Http\Controllers\API\OrderApiController;
-use App\Http\Controllers\API\ProductApiController;
-use App\Http\Controllers\API\TransactionApiController;
-use App\Http\Controllers\API\UserApiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\SaldoApiController;
+use App\Http\Controllers\API\CartApiController;
+use App\Http\Controllers\API\DataApiController;
+use App\Http\Controllers\API\UserApiController;
+use App\Http\Controllers\API\OrderApiController;
+use App\Http\Controllers\API\MarketApiController;
+use App\Http\Controllers\API\ProductApiController;
+use App\Http\Controllers\API\CategoryApiController;
+use App\Http\Controllers\API\TransactionApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,4 +72,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // ORDER
     Route::post('checkout', [OrderApiController::class, 'checkout']);
+    Route::post('topup', [SaldoApiController::class, 'topup']);
+    Route::get('/get-topup-status', [SaldoApiController::class, 'getTopupStatusByUser']);
 });

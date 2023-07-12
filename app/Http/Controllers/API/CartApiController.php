@@ -23,48 +23,59 @@ class CartApiController extends Controller
 
     public function cart($id)
     {
-        $cart = Cart::with('ticket')->where('ticket_id', $id)->first();
+        $cart = Cart::with('ticket')
+            ->where('ticket_id', $id)
+            ->where('users_id', auth()->id()) // Menambahkan pengecekan users_id
+            ->first();
+
         if (empty($cart)) {
             return ResponseFormatter::success($cart, 'Item tidak ditemukan');
         }
+
         return ResponseFormatter::success($cart, 'List berhasil ditampilkan');
     }
+
 
     public function addCart(Request $request)
     {
         try {
             $request->validate([
-                'users_id' => 'required',
                 'ticket_id' => 'required',
                 'quantity' => 'required',
             ]);
 
             $cart = Cart::create([
-                'users_id' => $request->users_id,
+                'users_id' => auth()->user()->id,
                 'ticket_id' => $request->ticket_id,
                 'quantity' => $request->quantity,
             ]);
-            return ResponseFormatter::success($cart, 'Item keranjang berhasil di tambahkan');
+
+            return ResponseFormatter::success($cart, 'Item keranjang berhasil ditambahkan');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
+
     public function deleteAllCart()
     {
-        $cart = Cart::all();
-        $cart->each->delete();
+        Cart::where('users_id', auth()->id())->delete(); // Menambahkan filter berdasarkan users_id
+
         return response()->json([
-            'message' =>  'List semua item keranjang berhasil dihapus'
+            'message' => 'List semua item keranjang berhasil dihapus'
         ]);
     }
 
     public function deleteCart($id)
     {
-        $cart = Cart::find($id);
+        $cart = Cart::where('id', $id)
+            ->where('users_id', auth()->id()) // Menambahkan pengecekan users_id
+            ->first();
+
         if (empty($cart)) {
             return ResponseFormatter::error('Item keranjang tidak ditemukan');
         }
+
         $cart->delete();
         return ResponseFormatter::success($cart, 'List item keranjang berhasil dihapus');
     }
