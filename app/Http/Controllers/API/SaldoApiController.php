@@ -15,7 +15,7 @@ class SaldoApiController extends Controller
     {
         $request->validate([
             'saldo' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'status' => 'required',
         ]);
 
@@ -23,7 +23,7 @@ class SaldoApiController extends Controller
         $order = Saldo::create([
             'users_id' => Auth::user()->id,
             'saldo' => $request->saldo,
-            'image' => $request->image,
+            'image' => $request->hasFile('image') ?  $request->file('image')->store('assets/order', 'public') : null,
             'status' => $request->status,
         ]);
 

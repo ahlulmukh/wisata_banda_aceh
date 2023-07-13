@@ -18,6 +18,7 @@ class Order extends Model
         'status',
         'total_price',
         'ticket_id',
+        'name_ticket',
         'created_at'
     ];
 

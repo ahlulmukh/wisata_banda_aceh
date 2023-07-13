@@ -37,6 +37,11 @@
                             {{ __('Transaksi') }}
                         </x-jet-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="/dashboard/saldo" :active="request()->routeIs('dashboard/saldo')">
+                            {{ __('Transaksi Saldo') }}
+                        </x-jet-nav-link>
+                    </div>
                 @endif
                 @if (Auth::user()->roles == 'USER')
 

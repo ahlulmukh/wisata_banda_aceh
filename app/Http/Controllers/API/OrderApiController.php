@@ -74,7 +74,8 @@ class OrderApiController extends Controller
             'items' => 'required|array',
             'nama' => 'required',
             'status' => 'required',
-            'total_price' => 'required'
+            'total_price' => 'required',
+            'name_ticket' => 'required'
         ]);
 
         // Simpan order
@@ -83,6 +84,7 @@ class OrderApiController extends Controller
             'nama' => $request->nama,
             'status' => $request->status,
             'total_price' => $request->total_price,
+            'name_ticket' => $request->name_ticket,
             'ticket_id' => 1
         ]);
 
