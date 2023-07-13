@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Markettani</title>
+    <title>Laporan Travelio</title>
 </head>
 
 <body>
@@ -15,18 +15,27 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th style="padding: 10px" scope="col">Total
-                        Produk Terjual</th>
+                        Ticket Terjual</th>
                     <td scope="col" style="text-align: left;padding: 10px">
-                        {{ $totalQuantity }} Produk
+                        {{ $totalQuantity }} Ticket
+                    </td>
+                </tr>
+            </thead>
+            <thead class="bg-gray-50">
+                <tr>
+                    <th style="padding: 10px" scope="col">Total
+                        Ticket Terjual</th>
+                    <td scope="col" style="text-align: left;padding: 10px">
+                        {{ $totalPending }} Ticket
                     </td>
                 </tr>
             </thead>
             <thead class="bg-gray-50">
                 <tr class="text-gray-500">
-                    <th scope="col" style="padding: 10px">Total Produk
+                    <th scope="col" style="padding: 10px">Total Ticket
                     </th>
                     <td scope="col" style="text-align: left;padding: 10px">
-                        {{ $totalProduct }} Produk
+                        {{ $totalProduct }} Ticket
                 </tr>
             </thead>
             <thead class="bg-gray-50">
@@ -35,14 +44,6 @@
                     </th>
                     <td scope="col" style="text-align: left;padding: 10px">
                         {{ $totalUser }} User
-                </tr>
-            </thead>
-            <thead class="bg-gray-50">
-                <tr class="text-gray-500">
-                    <th scope="col" style="padding: 10px">Total Toko
-                    </th>
-                    <td scope="col" style="text-align: left;padding: 10px">
-                        {{ $totalMarket }} Toko
                 </tr>
             </thead>
             <thead class="bg-gray-50">
@@ -68,7 +69,7 @@
                 <thead class="bg-gray-500">
                     <tr>
                         <th scope="col" style="padding: 10px">No</th>
-                        <th scope="col" style="padding: 10px">Alamat</th>
+                        <th scope="col" style="padding: 10px">Nama Ticket</th>
                         <th scope="col" style="padding: 10px">Status</th>
                         <th scope="col" style="padding: 10px">Total Harga</th>
                         <th scope="col" style="padding: 10px">Waktu Transaksi
@@ -85,7 +86,7 @@
                                 {{ $num++ }}</td>
 
                             <td style="text-align: left;padding: 10px">
-                                {{ $item->address }}
+                                {{ $item->name_ticket }}
                             </td>
                             <td style="text-align: left;padding: 10px">
                                 {{ $item->status }}

@@ -19,18 +19,27 @@
                                 <thead class="bg-gray-50">
                                     <tr class="text-gray-500">
                                         <th scope="col" style="background-color: #6a7c87"
-                                            class="px-6 py-3 text-left font-bold text-white">Total Produk Terjual</th>
+                                            class="px-6 py-3 text-left font-bold text-white">Total Ticket Terjual</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold bg-gray-200">
-                                            {{ $totalQuantity }} Produk
+                                            {{ $totalQuantity }} Ticket
                                         </th>
                                     </tr>
                                 </thead>
                                 <thead class="bg-gray-50">
                                     <tr class="text-gray-500">
                                         <th scope="col" style="background-color: #6a7c87"
-                                            class="text-white px-6 py-3 text-left font-bold">Total Produk</th>
+                                            class="px-6 py-3 text-left font-bold text-white">Total Ticket Pending</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold bg-gray-200">
-                                            {{ $totalProduct }} Produk
+                                            {{ $totalPending }} Ticket
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <thead class="bg-gray-50">
+                                    <tr class="text-gray-500">
+                                        <th scope="col" style="background-color: #6a7c87"
+                                            class="text-white px-6 py-3 text-left font-bold">Total Ticket</th>
+                                        <th scope="col" class="px-6 py-3 text-left font-bold bg-gray-200">
+                                            {{ $totalProduct }} Ticket
                                     </tr>
                                 </thead>
                                 <thead class="bg-gray-50">
@@ -39,14 +48,6 @@
                                             class="px-6 py-3 text-left font-bold text-white">Total User</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold bg-gray-200">
                                             {{ $totalUser }} User
-                                    </tr>
-                                </thead>
-                                <thead class="bg-gray-50">
-                                    <tr class="text-gray-500">
-                                        <th scope="col" style="background-color: #6a7c87"
-                                            class="px-6 py-3 text-left font-bold text-white">Total Toko</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold bg-gray-200">
-                                            {{ $totalMarket }} Toko
                                     </tr>
                                 </thead>
                                 <thead class="bg-gray-50">
@@ -60,7 +61,7 @@
                                 <thead class="bg-gray-50">
                                     <tr class="text-gray-500">
                                         <th scope="col" style="background-color: #6a7c87"
-                                            class="px-6 py-3 text-left font-bold text-white">Total Harga Semua Produk
+                                            class="px-6 py-3 text-left font-bold text-white">Total Harga Semua Ticket
                                             Terjual</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold bg-gray-200">
                                             Rp. {{ $totalPrice }}
@@ -74,7 +75,7 @@
                                     <thead class="bg-gray-500">
                                         <tr class="text-white">
                                             <th scope="col" class="px-6 py-3 text-left font-bold">No</th>
-                                            <th scope="col" class="px-6 py-3 text-left font-bold">Alamat</th>
+                                            <th scope="col" class="px-6 py-3 text-left font-bold">Nama Tiket</th>
                                             <th scope="col" class="px-6 py-3 text-left font-bold">Status</th>
                                             <th scope="col" class="px-6 py-3 text-left font-bold">Total Harga</th>
                                             <th scope="col" class="px-6 py-3 text-left font-bold">Waktu Transaksi
@@ -92,7 +93,7 @@
                                                     {{ $num++ }}</td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{ $item->address }}
+                                                    {{ $item->name_ticket }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-500">{{ $item->status }}</div>

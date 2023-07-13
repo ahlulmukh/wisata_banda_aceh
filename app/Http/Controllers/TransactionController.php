@@ -20,18 +20,18 @@ class TransactionController extends Controller
     public function index()
     {
         $order = Order::all();
-        $totalQuantity = OrderItem::sum('quantity');
+        $totalQuantity = Order::where('status', 'success')->count();
+        $totalPending = Order::where('status', 'pending')->count();
         $totalProduct = Ticket::count('name');
-        $totalMarket = Store::count('id');
         $totalUser = User::count('id');
-        $totalPrice = OrderItem::sum('price');
+        $totalPrice = Order::where('status', 'success')->sum('total_price');
         $totalCategory = CategoryTicket::count('id');
 
         return view('order.index', [
             'order' => $order,
             'totalQuantity' => $totalQuantity,
+            'totalPending' => $totalPending,
             'totalProduct' => $totalProduct,
-            'totalMarket' => $totalMarket,
             'totalUser' => $totalUser,
             'totalPrice' => $totalPrice,
             'totalCategory' => $totalCategory,
@@ -51,18 +51,18 @@ class TransactionController extends Controller
     public function create()
     {
         $order = Order::all();
-        $totalQuantity = OrderItem::sum('quantity');
+        $totalQuantity = Order::where('status', 'success')->count();
+        $totalPending = Order::where('status', 'pending')->count();
         $totalProduct = Ticket::count('name');
-        $totalMarket = Store::count('id');
         $totalUser = User::count('id');
-        $totalPrice = OrderItem::sum('price');
+        $totalPrice = Order::where('status', 'success')->sum('total_price');
         $totalCategory = CategoryTicket::count('id');
 
         return view('order.create', [
             'order' => $order,
             'totalQuantity' => $totalQuantity,
+            'totalPending' => $totalPending,
             'totalProduct' => $totalProduct,
-            'totalMarket' => $totalMarket,
             'totalUser' => $totalUser,
             'totalPrice' => $totalPrice,
             'totalCategory' => $totalCategory,
