@@ -4,17 +4,20 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Cart;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\Product;
 use App\Models\OrderItem;
+use Barryvdh\DomPDF\Facade;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use function PHPUnit\Framework\isEmpty;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -75,9 +78,9 @@ class OrderApiController extends Controller
             'nama' => 'required',
             'status' => 'required',
             'total_price' => 'required',
-            'name_ticket' => 'required'
+            'name_ticket' => 'required',
+            'quantities' => 'required',
         ]);
-
         // Simpan order
         $order = Order::create([
             'users_id' => Auth::user()->id,
@@ -85,8 +88,13 @@ class OrderApiController extends Controller
             'status' => $request->status,
             'total_price' => $request->total_price,
             'name_ticket' => $request->name_ticket,
-            'ticket_id' => 1
+            'quantities' => $request->quantities,
+            'ticket_id' => 1,
         ]);
+
+        $html = View::make('struk_template', ['order' => $order])->render();
+        $pdf = PDF::loadHTML($html);
+        $pdf->save(public_path('struks/' . $order->id . '.pdf'));
 
         // Generate QR code
         $qrcodeData = [
@@ -99,6 +107,8 @@ class OrderApiController extends Controller
 
         // Simpan URL QR code ke order
         $order->qrcode_url = $qrcodeUrl;
+        $struckUrl = url('struks/' . $order->id . '.pdf');
+        $order->struk_url = $struckUrl;
         $order->save();
 
         return ResponseFormatter::success($order, 'Transaksi berhasil');

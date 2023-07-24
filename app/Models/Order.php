@@ -19,6 +19,7 @@ class Order extends Model
         'total_price',
         'ticket_id',
         'name_ticket',
+        'quantities',
         'created_at'
     ];
 
