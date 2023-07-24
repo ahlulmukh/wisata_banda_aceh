@@ -25,8 +25,8 @@
                                         <th scope="col" class="px-6 py-3 text-center font-bold">Gambar</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Nama</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Lokasi</th>
-                                        <th scope="col" class="px-6 py-3 text-left font-bold">Description</th>
                                         <th scope="col" class="px-6 py-3 text-left font-bold">Harga</th>
+                                        <th scope="col" class="px-6 py-3 text-left font-bold">Description</th>
                                         <th scope="col" class="relative px-6 py-3">
                                             <span class="sr-only">Edit</span>
                                         </th>
