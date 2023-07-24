@@ -29,7 +29,7 @@
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="/dashboard/tickets" :active="request()->routeIs('dashboard/tickets')">
-                            {{ __('Tambah Tiket') }}
+                            {{ __('Tambah Wisata') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
