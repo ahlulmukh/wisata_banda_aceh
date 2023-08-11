@@ -149,7 +149,9 @@ class OrderApiController extends Controller
 
     private function generateQRCode($data)
     {
-        $qrcode = QrCode::format('png')->size(400)->generate($data);
+        $qrcode = QrCode::format('png')->size(200)->backgroundColor(255, 255, 0)
+            ->color(0, 0, 255)
+            ->margin(1)->generate($data);
         $qrcodePath = 'assets/qrcodes/' . time() . '.png'; // Menentukan path penyimpanan QR code
         Storage::disk('public')->put($qrcodePath, $qrcode); // Menyimpan QR code ke storage
 
