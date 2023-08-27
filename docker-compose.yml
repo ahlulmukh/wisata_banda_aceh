@@ -7,23 +7,23 @@ services:
         uid: 1000
       context: ./
       dockerfile: Dockerfile
-    image: marketplace
-    container_name: marketplace-app
+    image: wisata
+    container_name: wisata-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
       - ./:/var/www
     networks:
-      - marketplace
+      - wisata
 
   mysql:
     image: mysql:5.7
-    container_name: marketplace-db
+    container_name: wisata-db
     restart: unless-stopped
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: laravel-marketplace
+      MYSQL_DATABASE: laravel-wisata
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_PASSWORD: admin
       MYSQL_USER: admin
@@ -32,11 +32,11 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     networks:
-      - marketplace
+      - wisata
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: marketplace-phpmyadmin
+    container_name: wisata-phpmyadmin
     restart: unless-stopped
     ports:
       - "7000:80"
@@ -49,7 +49,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: marketplace-nginx
+    container_name: wisata-nginx
     restart: unless-stopped
     ports:
       - 8080:80
@@ -60,7 +60,7 @@ services:
     depends_on:
       - app
     networks:
-      - marketplace
+      - wisata
 
 networks:
   marketplace:
