@@ -45,7 +45,7 @@ services:
     environment:
       PMA_HOST: mysql
     networks:
-      - marketplace
+      - wisata
 
   nginx:
     image: nginx:alpine
@@ -63,5 +63,5 @@ services:
       - wisata
 
 networks:
-  marketplace:
+  wisata:
     driver: bridge
