@@ -14,7 +14,7 @@
             <div style="background-color: #d8d8d8;padding: 20px;height: 100%" class="overflow-hidden rounded-lg">
                 <h1 style="font-size: 40px;font-weight: 600;color: #5d6469">Selamat Datang!</h1>
                 @if (Auth::user()->roles == 'ADMIN')
-                        <p style="font-weight: 600;color: #5d6469">Halaman Administrator Wisata</p>
+                        <p style="font-weight: 600;color: #5d6469">Halaman Admin Wisata</p>
                     @else
                         <p style="font-weight: 600;color: #5d6469">Halaman dashboard pelanggan</p>
                     @endif
